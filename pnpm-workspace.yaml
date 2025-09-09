@@ -1,0 +1,4 @@
+onlyBuiltDependencies:
+  - electron
+  - extract-file-icon
+  - node-window-manager

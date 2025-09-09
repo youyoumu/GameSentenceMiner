@@ -5,9 +5,9 @@
   "description": "GameSentenceMiner",
   "main": "dist/main/main.js",
   "scripts": {
-    "start": "npm run build && electron .",
+    "start": "electron .",
     "build": "tsc",
-    "dev": "tsc --watch",
+    "dev": "concurrently --prefix none \"tsc --watch\" \"pnpm run start\"",
     "app:dir": "electron-builder --dir",
     "app:dist": "tsc && electron-builder",
     "app:deploy": "electron-builder --publish=always"
@@ -74,6 +74,7 @@
   "license": "LGPL-3.0-only",
   "devDependencies": {
     "@types/ws": "^8.18.0",
+    "concurrently": "^9.2.1",
     "electron": "^35.0.1",
     "electron-builder": "^25.1.8",
     "typescript": "^5.8.2"

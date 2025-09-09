@@ -1,7 +1,7 @@
 [build-system]
 requires = [
-  "setuptools>=61.0",  # PEP 621 support in setuptools
-  "wheel"
+  "setuptools>=61.0", # PEP 621 support in setuptools
+  "wheel",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -12,14 +12,12 @@ description = "A tool for mining sentences from games. Update: Overlay?"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT License" }
-authors = [
-  { name = "Beangate", email = "bpwhelan95@gmail.com"}
-]
+authors = [{ name = "Beangate", email = "bpwhelan95@gmail.com" }]
 urls = { Homepage = "https://github.com/bpwhelan/GameSentenceMiner", Repository = "https://github.com/bpwhelan/GameSentenceMiner" }
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: MIT License",
-  "Operating System :: OS Independent"
+  "Operating System :: OS Independent",
 ]
 dependencies = [
   "requests~=2.32.3",
@@ -33,7 +31,7 @@ dependencies = [
   "plyer~=2.1.0",
   "keyboard~=0.13.5",
   "websockets~=15.0.1",
-  "openai-whisper==20240930; sys_platform == 'win32'",
+  "openai-whisper==20250625; sys_platform == 'win32'",
   "openai-whisper; sys_platform != 'win32'",
   "stable-ts-whisperless",
   "silero-vad~=5.1.2",
@@ -57,7 +55,7 @@ dependencies = [
   "obsws-python~=1.7.2",
   "numpy==2.2.6",
   "regex",
-  "faster-whisper~=1.2.0"
+  "faster-whisper~=1.2.0",
 ]
 
 # This creates a command-line script named `gamesentenceminer` that will
