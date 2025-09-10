@@ -6,15 +6,17 @@
   "main": "dist/main/main.js",
   "scripts": {
     "start": "electron .",
-    "build": "tsc",
-    "dev": "concurrently --prefix none \"tsc --watch\" \"pnpm run start\"",
+    "build": "tsdown",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "dev": "pnpm run clean && concurrently --prefix none \"tsdown --watch\" \"nodemon --delay 1000 --watch dist --exec pnpm run start\"",
     "app:dir": "electron-builder --dir",
     "app:dist": "tsc && electron-builder",
     "app:deploy": "electron-builder --publish=always"
   },
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "tsc": {},
   "build": {
@@ -77,6 +79,9 @@
     "concurrently": "^9.2.1",
     "electron": "^35.0.1",
     "electron-builder": "^25.1.8",
+    "nodemon": "^3.1.10",
+    "rimraf": "^6.0.1",
+    "tsdown": "^0.15.0",
     "typescript": "^5.8.2"
   },
   "dependencies": {
