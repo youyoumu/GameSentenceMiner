@@ -482,7 +482,7 @@ async function ensureAndRunGSM(pythonPath: string, retry = 1): Promise<void> {
 
     await checkAndInstallUV(pythonPath);
 
-    if (!isInstalled) {
+    if (!isInstalled && !isDev) {
         console.log(`${APP_NAME} is not installed. Installing now...`);
         try {
             await runCommand(pythonPath, ['-m', 'uv', 'pip', 'install', '--prerelease=allow', PACKAGE_NAME], true, true);

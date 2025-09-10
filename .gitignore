@@ -107,3 +107,5 @@ GameSentenceMiner.wiki/
 /test
 /.venv
 .webui_secret_key
+
+.APPDATA

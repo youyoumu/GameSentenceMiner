@@ -3,7 +3,14 @@ import * as fs from 'fs';
 import * as os from 'os';
 import { Downloader } from 'nodejs-file-downloader';
 import * as tar from 'tar';
-import { BASE_DIR, execFileAsync, getPlatform, isArmMac, SupportedPlatform } from '../util.js';
+import {
+    BASE_DIR,
+    execFileAsync,
+    getPlatform,
+    isArmMac,
+    isDev,
+    SupportedPlatform,
+} from '../util.js';
 import { mainWindow } from '../main.js';
 
 // --- Interfaces and Constants ---
@@ -55,7 +62,11 @@ function getPythonExecutablePath(): string {
     if (platform === 'linux') {
         return path.join(getVenvPath(), 'bin', 'python');
     }
-    return path.join(BASE_DIR, downloads[platform].path);
+
+
+    return isDev
+        ? path.join(BASE_DIR, '../../.venv/Scripts/python.exe')
+        : path.join(BASE_DIR, downloads[platform].path);
 }
 
 /**

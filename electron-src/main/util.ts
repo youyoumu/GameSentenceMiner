@@ -16,9 +16,12 @@ export const execFileAsync = promisify(execFile);
 
 export const isDev = !app.isPackaged;
 
-export const BASE_DIR = process.env.APPDATA
-    ? path.join(process.env.APPDATA, APP_NAME) // Windows
-    : path.join(os.homedir(), '.config', APP_NAME); // macOS/Linux
+export const BASE_DIR =
+    isDev && process.env.INIT_CWD
+        ? path.join(process.env.INIT_CWD, '.APPDATA', APP_NAME)
+        : process.env.APPDATA
+          ? path.join(process.env.APPDATA, APP_NAME) // Windows
+          : path.join(os.homedir(), '.config', APP_NAME); // macOS/Linux
 
 export const getPlatform = (): SupportedPlatform => {
     const platform = os.platform();
