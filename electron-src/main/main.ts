@@ -50,6 +50,7 @@ import * as fs from 'node:fs';
 import { registerFrontPageIPC } from './ui/front.js';
 import { registerPythonIPC } from './ui/python.js';
 import { execFile } from 'node:child_process';
+import { createMain2Window } from './window/main2.js';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;
@@ -334,25 +335,7 @@ async function createWindow() {
         mainWindow = null;
     });
 
-  createRendererWindow();
-}
-
-function createRendererWindow() {
-    const rendererWindow = new BrowserWindow({
-        width: 1280,
-        height: 1000,
-        icon: getIconPath(32),
-        show: !getStartConsoleMinimized(),
-        webPreferences: {
-            devTools: true,
-        },
-    });
-
-  if (isDev) {
-    rendererWindow.loadURL("http://localhost:3000");
-  } else {
-    rendererWindow.loadFile(path.join(process.resourcesPath, "renderer", "index.html"));
-  }
+  createMain2Window();
 }
 
 async function update(shouldRestart: boolean = false, force = false): Promise<void> {
