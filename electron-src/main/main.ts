@@ -51,6 +51,8 @@ import { registerFrontPageIPC } from './ui/front.js';
 import { registerPythonIPC } from './ui/python.js';
 import { execFile } from 'node:child_process';
 import { createMain2Window } from './window/main2.js';
+import { registerOverlayIPC } from './ui/overlay.js';
+import { createOverlayWindow } from './window/overlay.js';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;
@@ -83,6 +85,7 @@ function registerIPC() {
     registerOCRUtilsIPC();
     registerFrontPageIPC();
     registerPythonIPC();
+    registerOverlayIPC()
 }
 
 async function autoUpdate() {
@@ -335,7 +338,6 @@ async function createWindow() {
         mainWindow = null;
     });
 
-  createMain2Window();
 }
 
 async function update(shouldRestart: boolean = false, force = false): Promise<void> {
@@ -616,6 +618,9 @@ if (!app.requestSingleInstanceLock()) {
                 }
             });
         });
+
+  createMain2Window();
+  createOverlayWindow();
 
         app.on('window-all-closed', () => {
             if (process.platform !== 'darwin') {

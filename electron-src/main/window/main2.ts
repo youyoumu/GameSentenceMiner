@@ -8,6 +8,7 @@ export function createMain2Window() {
         height: 1000,
         webPreferences: {
             devTools: true,
+            preload: path.join(import.meta.dirname, '../../preload/preload.js'),
         },
     });
 

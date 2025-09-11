@@ -38,7 +38,7 @@ const daisyUIThemes = [
     'silk',
 ];
 
-export function RootPage() {
+export function OverlayPage() {
     const [themeIndex, setThemeIndex] = createSignal(0);
     createEffect(() => {
         document.body.setAttribute('data-theme', daisyUIThemes[themeIndex()]);
@@ -57,14 +57,6 @@ export function RootPage() {
                     }}
                 >
                     Cycle theme
-                </button>
-                <button
-                    class="btn btn-neutral"
-                    onClick={() => {
-                        ipcRenderer.send('overlay:open');
-                    }}
-                >
-                    Open Overlay
                 </button>
             </div>
         </div>
