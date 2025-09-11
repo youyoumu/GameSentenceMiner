@@ -1,11 +1,7 @@
-import { createFileRoute } from "@tanstack/solid-router";
+import { createFileRoute } from '@tanstack/solid-router';
 
-// import RootPage from "./-components/RootPage";
+import { RootPage } from './-components/RootPage';
 
-export const Route = createFileRoute("/")({
-  component: RootPage,
+export const Route = createFileRoute('/')({
+    component: RootPage,
 });
-
-function RootPage() {
-  return <div>Root Page</div>;
-}

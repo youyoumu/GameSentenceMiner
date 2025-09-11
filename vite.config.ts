@@ -1,4 +1,4 @@
-// import tailwindcss from '@tailwindcss/vite';
+import tailwindcss from '@tailwindcss/vite';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
@@ -15,7 +15,7 @@ export default defineConfig({
             generatedRouteTree: './electron-src/renderer/src/routeTree.gen.ts',
         }),
         solidPlugin(),
-        // tailwindcss(),
+        tailwindcss(),
         // webfontDownload([
         //     'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Single:wght@100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Yuji+Syuku&display=swap',
         // ]),
