@@ -5,7 +5,7 @@
   "description": "GameSentenceMiner",
   "main": "dist/main/main.js",
   "scripts": {
-    "start:main": "electron .",
+    "start:main": "wait-on --reverse .tsdown.lock && electron .",
     "build:main": "tsdown",
     "typecheck:main": "tsc --noEmit",
     "typecheck:renderer": "tsc --noEmit --project electron-src/renderer/tsconfig.json",
@@ -14,7 +14,7 @@
     "preview:renderer": "vite preview --port 3000",
     "build:renderer": "vite build",
     "serve:renderer": "vite preview",
-    "dev": "pnpm run clean && concurrently --names tsdown,vite,electron \"tsdown --watch electron-src/main\" \"pnpm run dev:renderer\" \"nodemon --delay 2000 --watch dist --exec pnpm run start:main\"",
+    "dev": "node script/dev.js",
     "clean": "rimraf dist",
     "app:dir": "electron-builder --dir",
     "app:dist": "tsc && electron-builder",
@@ -93,7 +93,8 @@
     "tsdown": "^0.15.0",
     "typescript": "^5.8.2",
     "vite": "^7.1.5",
-    "vite-plugin-solid": "^2.11.8"
+    "vite-plugin-solid": "^2.11.8",
+    "wait-on": "^8.0.4"
   },
   "dependencies": {
     "@tanstack/router-plugin": "^1.131.37",
@@ -109,6 +110,7 @@
     "obs-websocket-js": "^5.0.6",
     "solid-js": "^1.9.9",
     "tar": "^7.4.3",
-    "ws": "^8.18.1"
+    "ws": "^8.18.1",
+    "zod": "^4.1.7"
   }
 }

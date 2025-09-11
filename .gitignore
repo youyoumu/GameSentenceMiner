@@ -109,3 +109,4 @@ GameSentenceMiner.wiki/
 .webui_secret_key
 
 .APPDATA
+.tsdown.lock
