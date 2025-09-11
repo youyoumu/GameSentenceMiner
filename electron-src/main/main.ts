@@ -333,6 +333,26 @@ async function createWindow() {
         }
         mainWindow = null;
     });
+
+  createRendererWindow();
+}
+
+function createRendererWindow() {
+    const rendererWindow = new BrowserWindow({
+        width: 1280,
+        height: 1000,
+        icon: getIconPath(32),
+        show: !getStartConsoleMinimized(),
+        webPreferences: {
+            devTools: true,
+        },
+    });
+
+  if (isDev) {
+    rendererWindow.loadURL("http://localhost:3000");
+  } else {
+    rendererWindow.loadFile(path.join(process.resourcesPath, "renderer", "index.html"));
+  }
 }
 
 async function update(shouldRestart: boolean = false, force = false): Promise<void> {

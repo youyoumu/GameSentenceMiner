@@ -9,6 +9,12 @@
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
     "clean": "rimraf dist",
+    "typecheck:renderer": "tsc --noEmit --project electron-src/renderer/tsconfig.json",
+    "dev:renderer": "vite --port 3000",
+    "start:renderer": "NODE_ENV=production vite --port 3000",
+    "preview:renderer": "vite preview --port 3000",
+    "build:renderer": "vite build",
+    "serve:renderer": "vite preview",
     "dev": "pnpm run clean && concurrently --prefix none \"tsdown --watch\" \"nodemon --delay 1000 --watch dist --exec pnpm run start\"",
     "app:dir": "electron-builder --dir",
     "app:dist": "tsc && electron-builder",
@@ -82,9 +88,13 @@
     "nodemon": "^3.1.10",
     "rimraf": "^6.0.1",
     "tsdown": "^0.15.0",
-    "typescript": "^5.8.2"
+    "typescript": "^5.8.2",
+    "vite": "^7.1.5",
+    "vite-plugin-solid": "^2.11.8"
   },
   "dependencies": {
+    "@tanstack/router-plugin": "^1.131.37",
+    "@tanstack/solid-router": "^1.131.37",
     "axios": "^1.8.1",
     "detect-port": "^2.1.0",
     "electron-log": "^5.3.2",
@@ -94,6 +104,7 @@
     "node-window-manager": "^2.2.4",
     "nodejs-file-downloader": "^4.13.0",
     "obs-websocket-js": "^5.0.6",
+    "solid-js": "^1.9.9",
     "tar": "^7.4.3",
     "ws": "^8.18.1"
   }
