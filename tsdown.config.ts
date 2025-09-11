@@ -2,26 +2,47 @@ import { defineConfig } from 'tsdown';
 import fs from 'fs';
 import path from 'path';
 
-const lockFile = path.resolve('.tsdown.lock');
-
-export default defineConfig({
-    entry: 'electron-src/main/main.ts',
-    unbundle: true,
-    outDir: 'dist/main',
-    skipNodeModulesBundle: true,
-    treeshake: false,
-    hooks: {
-        'build:prepare': () => {
-            fs.writeFileSync(lockFile, '');
-            console.log('Created lock file');
+function makeLock(name: string) {
+    const file = path.resolve(`.tsdown.lock.${name}`);
+    return {
+        prepare: () => {
+            fs.writeFileSync(file, '');
+            console.log(`Created ${file}`);
         },
-        'build:done': async () => {
-            // simulate long build time
-            // await new Promise((resolve) => setTimeout(resolve, 5000));
-            if (fs.existsSync(lockFile)) {
-                fs.unlinkSync(lockFile);
-                console.log('Removed lock file');
+        done: () => {
+            if (fs.existsSync(file)) {
+                fs.unlinkSync(file);
+                console.log(`Removed ${file}`);
             }
         },
+    };
+}
+
+export default defineConfig([
+    {
+        entry: ['electron-src/main/main.ts'],
+        outDir: 'dist/main',
+        unbundle: true,
+        skipNodeModulesBundle: true,
+        treeshake: false,
+        hooks: {
+            'build:prepare': makeLock('main').prepare,
+            'build:done': makeLock('main').done,
+        },
     },
-});
+    {
+        entry: ['electron-src/preload/preload.ts'],
+        outDir: 'dist/preload',
+        external: ['electron'],
+        noExternal: ['zod'],
+        treeshake: true,
+        format: 'cjs',
+        outExtensions: () => ({
+            js: '.js',
+        }),
+        hooks: {
+            'build:prepare': makeLock('preload').prepare,
+            'build:done': makeLock('preload').done,
+        },
+    },
+]);

@@ -5,7 +5,7 @@
   "description": "GameSentenceMiner",
   "main": "dist/main/main.js",
   "scripts": {
-    "start:main": "wait-on --reverse .tsdown.lock && electron .",
+    "start:main": "wait-on --reverse .tsdown.lock.main .tsdown.lock.preload && electron .",
     "build:main": "tsdown",
     "typecheck:main": "tsc --noEmit",
     "typecheck:renderer": "tsc --noEmit --project electron-src/renderer/tsconfig.json",
