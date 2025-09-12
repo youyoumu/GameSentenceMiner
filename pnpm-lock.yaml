@@ -20,6 +20,9 @@ importers:
       '@zag-js/color-picker':
         specifier: ^1.23.0
         version: 1.23.0
+      '@zag-js/combobox':
+        specifier: ^1.23.0
+        version: 1.23.0
       '@zag-js/number-input':
         specifier: ^1.23.0
         version: 1.23.0
@@ -1058,11 +1061,20 @@ packages:
   '@zag-js/anatomy@1.23.0':
     resolution: {integrity: sha512-Exwv9QRI7D1Z/4GH/V3aUnkhvT5MCC5vNK4gJ4bbN95g9fvVkBwn05rRcf5taZBkoBtpWhR7t8zSN/Oo22WqqQ==}
 
+  '@zag-js/aria-hidden@1.23.0':
+    resolution: {integrity: sha512-QJ2wvpLwsctc5sUfjlIBNc2GJUknav+tQ29w5jljE2MOXl/++8b1sFPXJcEXUhcsnBLo0omSvxP8+SbwVUtSug==}
+
+  '@zag-js/collection@1.23.0':
+    resolution: {integrity: sha512-TxPo8DHnxojNSjy3lFxlGNcAWxrNqx0mec6QaWOyFq/guF7EklojVZZz+x27t9ObYoLsR9Q8D0Dh80w/NLKqrg==}
+
   '@zag-js/color-picker@1.23.0':
     resolution: {integrity: sha512-bXRvjR1cy3IIVdmri9iebAMqKKe2ZDF148fj+oglR6VRIdMhV+5JlCVe5Qj8JFjvK5+jI0T3Cr6d+FlNbfxzgw==}
 
   '@zag-js/color-utils@1.23.0':
     resolution: {integrity: sha512-teO32H609UPvf86t3ikUSoiq3rJm0Gi+RPuzeLgubaB2DypIEVOabN7GeCACwT+Pqa2tTFvA32cQjaEcMdocQQ==}
+
+  '@zag-js/combobox@1.23.0':
+    resolution: {integrity: sha512-BWRylwLALvocKlz39aq8pmlJimuKbExuegwQn9hGH3GBmd6qfAv5lDbhgFML4PGISTmHQtvLXnX18SZQSpvEjQ==}
 
   '@zag-js/core@1.23.0':
     resolution: {integrity: sha512-pqVWl7CLNnB5IxfetAx0nnC/qoGmMRjCLR7USVtid6RrcVS3ekMzXKzQUXV5Ro+6kG7Zggc8fubfsKj/sy6FAw==}
@@ -4030,6 +4042,12 @@ snapshots:
 
   '@zag-js/anatomy@1.23.0': {}
 
+  '@zag-js/aria-hidden@1.23.0': {}
+
+  '@zag-js/collection@1.23.0':
+    dependencies:
+      '@zag-js/utils': 1.23.0
+
   '@zag-js/color-picker@1.23.0':
     dependencies:
       '@zag-js/anatomy': 1.23.0
@@ -4043,6 +4061,18 @@ snapshots:
 
   '@zag-js/color-utils@1.23.0':
     dependencies:
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/combobox@1.23.0':
+    dependencies:
+      '@zag-js/anatomy': 1.23.0
+      '@zag-js/aria-hidden': 1.23.0
+      '@zag-js/collection': 1.23.0
+      '@zag-js/core': 1.23.0
+      '@zag-js/dismissable': 1.23.0
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/popper': 1.23.0
+      '@zag-js/types': 1.23.0
       '@zag-js/utils': 1.23.0
 
   '@zag-js/core@1.23.0':

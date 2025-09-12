@@ -64,7 +64,7 @@ export function ColorPicker(props: {
       <div {...api().getPositionerProps()}>
         <div
           {...api().getContentProps()}
-          class="p-2 bg-base-100"
+          class="p-2 bg-base-200"
         >
           <div
             {...api().getAreaProps()}

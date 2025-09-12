@@ -102,6 +102,7 @@
     "@tanstack/router-plugin": "^1.131.37",
     "@tanstack/solid-router": "^1.131.37",
     "@zag-js/color-picker": "^1.23.0",
+    "@zag-js/combobox": "^1.23.0",
     "@zag-js/number-input": "^1.23.0",
     "@zag-js/solid": "^1.23.0",
     "axios": "^1.8.1",

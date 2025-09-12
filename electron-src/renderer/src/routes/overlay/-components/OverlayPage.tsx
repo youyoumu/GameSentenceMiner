@@ -5,6 +5,8 @@ import { IconSettings } from '@tabler/icons-solidjs';
 import './overlay.css';
 import { cn } from '#/lib/utils/cn';
 import { NumberInput } from './NumberInput';
+import { Combobox } from './Combobox';
+import { loadGoogleFont, fonts } from './utils/fonts';
 
 export function OverlayPage() {
   const [showSettings, setShowSettings] = createSignal(false);
@@ -20,6 +22,7 @@ export function OverlayPage() {
   const [textColor, setTextColor] = createSignal(colorPicker.parse('#ffffff'));
   const [fontSize, setFontSize] = createSignal(defaultFontSize);
   const [fontWeight, setFontWeight] = createSignal(defaultFontWeight);
+  const [font, setFont] = createSignal(fonts[0]);
 
   // guard to make sure the color is not fully transparent
   createEffect(() => {
@@ -32,6 +35,10 @@ export function OverlayPage() {
     if (textColor().getChannelValue('alpha') === 0) {
       setTextColor(defaultTextColor);
     }
+  });
+
+  createEffect(() => {
+    loadGoogleFont(font(), [100, 200, 300, 400, 500, 600, 700, 800, 900]);
   });
 
   return (
@@ -58,13 +65,23 @@ export function OverlayPage() {
       >
         <div
           id="settings"
-          class="overflow-auto opacity-0 relative w-full bg-base-100"
+          class="opacity-0 relative w-full bg-base-100"
         >
           <div
-            class={cn('flex justify-end p-2 gap-4 text-sm w-fit ms-auto', {
+            class={cn('flex justify-end p-2 gap-4 text-sm w-fit ms-auto flex-wrap', {
               hidden: !showSettings(),
             })}
           >
+            <div class="flex gap-2 items-center">
+              Font
+              <Combobox
+                comboboxData={fonts.map((font) => ({ label: font, code: font }))}
+                initialValue={font()}
+                onValueChange={(value) => {
+                  setFont(value);
+                }}
+              />
+            </div>
             <div class="flex gap-2 items-center">
               Font Size
               <NumberInput
@@ -134,11 +151,11 @@ export function OverlayPage() {
           style={{
             'font-size': `${fontSize()}px`,
             'font-weight': `${fontWeight()}`,
+            'font-family': `${font()}`,
             color: textColor().toString('rgba'),
           }}
         >
-          asdf lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          これは日本語のサンプルテキストです。 This is sample text for learners.
         </p>
       </div>
 
