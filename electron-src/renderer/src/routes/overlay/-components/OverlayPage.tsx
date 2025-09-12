@@ -58,70 +58,74 @@ export function OverlayPage() {
       >
         <div
           id="settings"
-          class={cn('flex justify-end bg-base-100 p-2 gap-4 opacity-0 text-sm', {
-            hidden: !showSettings(),
-          })}
+          class="overflow-auto opacity-0 relative w-full bg-base-100"
         >
-          <div class="flex gap-2 items-center">
-            Font Size
-            <NumberInput
-              initialValue={fontSize()}
-              onValueChange={(value) => {
-                setFontSize(value);
-              }}
-              min={1}
-              max={99}
-              step={0.1}
-            />
-          </div>
-          <div class="flex gap-2 items-center">
-            Font Weight
-            <NumberInput
-              initialValue={fontWeight()}
-              onValueChange={(value) => {
-                setFontWeight(value);
-              }}
-              min={100}
-              max={900}
-              step={100}
-            />
-          </div>
-          <div class="flex gap-2 items-center">
-            <ColorPicker
-              initialColor={textColor()}
-              onValueChange={(value) => {
-                setTextColor(value);
-              }}
-              classNames={{
-                root: 'size-6 border',
-              }}
-            />
-            Text
-          </div>
+          <div
+            class={cn('flex justify-end p-2 gap-4 text-sm w-fit ms-auto', {
+              hidden: !showSettings(),
+            })}
+          >
+            <div class="flex gap-2 items-center">
+              Font Size
+              <NumberInput
+                initialValue={fontSize()}
+                onValueChange={(value) => {
+                  setFontSize(value);
+                }}
+                min={1}
+                max={99}
+                step={0.1}
+              />
+            </div>
+            <div class="flex gap-2 items-center">
+              Font Weight
+              <NumberInput
+                initialValue={fontWeight()}
+                onValueChange={(value) => {
+                  setFontWeight(value);
+                }}
+                min={100}
+                max={900}
+                step={100}
+              />
+            </div>
+            <div class="flex gap-2 items-center">
+              <ColorPicker
+                initialColor={textColor()}
+                onValueChange={(value) => {
+                  setTextColor(value);
+                }}
+                classNames={{
+                  root: 'size-6 border',
+                }}
+              />
+              Text
+            </div>
 
-          <div class="flex gap-2 items-center">
-            <ColorPicker
-              initialColor={backgroundColor()}
-              onValueChange={(value) => {
-                setBackgroundColor(value);
-              }}
-              classNames={{
-                root: 'size-6 border',
-              }}
-            />
-            Background
-          </div>
-          <div class="flex gap-2 items-center">
-            <ColorPicker
-              initialColor={windowColor()}
-              onValueChange={(value) => {
-                setWindowColor(value);
-              }}
-              classNames={{
-                root: 'size-6 border',
-              }}
-            />
-            Window
+            <div class="flex gap-2 items-center">
+              <ColorPicker
+                initialColor={backgroundColor()}
+                onValueChange={(value) => {
+                  setBackgroundColor(value);
+                }}
+                classNames={{
+                  root: 'size-6 border',
+                }}
+              />
+              Background
+            </div>
+            <div class="flex gap-2 items-center">
+              <ColorPicker
+                initialColor={windowColor()}
+                onValueChange={(value) => {
+                  setWindowColor(value);
+                }}
+                classNames={{
+                  root: 'size-6 border',
+                }}
+              />
+              Window
+            </div>
           </div>
         </div>
 
