@@ -1,17 +1,17 @@
 {
-    "typeCheckingMode": "basic",
-    "pythonVersion": "3.13",
-    "venvPath": ".",
-    "venv": ".venv",
+  "typeCheckingMode": "basic",
+  "pythonVersion": "3.13",
+  "venvPath": ".",
+  "venv": ".venv",
 
-    "reportOptionalMemberAccess": "none",
-    "reportAttributeAccessIssue": "none",
-    "reportArgumentType": "none",
-    "reportOperatorIssue": "none",
-    "reportReturnType": "none",
-    "reportAssignmentType": "none",
-    "reportUnboundVariable": "none",
-    "reportIndexIssue": "none",
-    "reportCallIssue": "none",
-    "reportOptionalSubscript": "none"
+  "reportOptionalMemberAccess": "none",
+  "reportAttributeAccessIssue": "none",
+  "reportArgumentType": "none",
+  "reportOperatorIssue": "none",
+  "reportReturnType": "none",
+  "reportAssignmentType": "none",
+  "reportUnboundVariable": "none",
+  "reportIndexIssue": "none",
+  "reportCallIssue": "none",
+  "reportOptionalSubscript": "none"
 }
