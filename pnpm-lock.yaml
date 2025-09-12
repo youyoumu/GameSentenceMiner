@@ -20,6 +20,9 @@ importers:
       '@zag-js/color-picker':
         specifier: ^1.23.0
         version: 1.23.0
+      '@zag-js/number-input':
+        specifier: ^1.23.0
+        version: 1.23.0
       '@zag-js/solid':
         specifier: ^1.23.0
         version: 1.23.0(solid-js@1.9.9)
@@ -464,6 +467,9 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
+  '@internationalized/number@3.6.5':
+    resolution: {integrity: sha512-6hY4Kl4HPBvtfS62asS/R22JzNNy8vi/Ssev7x6EobfCp+9QIB2hKvI2EtbdJ0VSQacxVNtqhE/NmF/NZ0gm6g==}
+
   '@isaacs/balanced-match@4.0.1':
     resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
     engines: {node: 20 || >=22}
@@ -821,6 +827,9 @@ packages:
     peerDependencies:
       solid-js: '>=1.8.4'
 
+  '@swc/helpers@0.5.17':
+    resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
+
   '@szmarczak/http-timer@4.0.6':
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
     engines: {node: '>=10'}
@@ -1066,6 +1075,9 @@ packages:
 
   '@zag-js/interact-outside@1.23.0':
     resolution: {integrity: sha512-2w8A0KXe7aTEXSh91gGr/Ijz3VDzRkumC35qYcx42lNmmVSQ8sjW9rjTcJr4NVWEefkxU+oNeVBcCjWqbh1ZZw==}
+
+  '@zag-js/number-input@1.23.0':
+    resolution: {integrity: sha512-PohofSu3oSy4dPBondKcoElqm/6yFJfUErolPddrX3p+082Q6/fNa2Q4+MbAEZIYSG6DkLTUQ0OybA253xHs9g==}
 
   '@zag-js/popper@1.23.0':
     resolution: {integrity: sha512-CXG0X4ao4VV0ij42PsIOuhK2fSMdd3O7yBQDK8D4Ko1KbhlZ+WTB3p2kuWTR1W8vAwvhCSuJ5gQHAgdtLqwgKw==}
@@ -3450,6 +3462,10 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
+  '@internationalized/number@3.6.5':
+    dependencies:
+      '@swc/helpers': 0.5.17
+
   '@isaacs/balanced-match@4.0.1': {}
 
   '@isaacs/brace-expansion@5.0.0':
@@ -3759,6 +3775,10 @@ snapshots:
     dependencies:
       solid-js: 1.9.9
 
+  '@swc/helpers@0.5.17':
+    dependencies:
+      tslib: 2.8.1
+
   '@szmarczak/http-timer@4.0.6':
     dependencies:
       defer-to-connect: 2.0.1
@@ -4043,6 +4063,15 @@ snapshots:
   '@zag-js/interact-outside@1.23.0':
     dependencies:
       '@zag-js/dom-query': 1.23.0
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/number-input@1.23.0':
+    dependencies:
+      '@internationalized/number': 3.6.5
+      '@zag-js/anatomy': 1.23.0
+      '@zag-js/core': 1.23.0
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/types': 1.23.0
       '@zag-js/utils': 1.23.0
 
   '@zag-js/popper@1.23.0':

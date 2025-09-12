@@ -4,6 +4,7 @@ import { ColorPicker } from './ColorPicker';
 import { IconSettings } from '@tabler/icons-solidjs';
 import './overlay.css';
 import { cn } from '#/lib/utils/cn';
+import { NumberInput } from './NumberInput';
 
 export function OverlayPage() {
   const [showSettings, setShowSettings] = createSignal(false);
@@ -11,10 +12,14 @@ export function OverlayPage() {
   const defaultWindowColor = colorPicker.parse('#ffffff');
   const defaultBackgroundColor = colorPicker.parse('#000000');
   const defaultTextColor = colorPicker.parse('#ffffff');
+  const defaultFontSize = 24;
+  const defaultFontWeight = 400;
 
   const [windowColor, setWindowColor] = createSignal(colorPicker.parse('#ffffff'));
   const [backgroundColor, setBackgroundColor] = createSignal(colorPicker.parse('#000000'));
   const [textColor, setTextColor] = createSignal(colorPicker.parse('#ffffff'));
+  const [fontSize, setFontSize] = createSignal(defaultFontSize);
+  const [fontWeight, setFontWeight] = createSignal(defaultFontWeight);
 
   // guard to make sure the color is not fully transparent
   createEffect(() => {
@@ -58,6 +63,30 @@ export function OverlayPage() {
           })}
         >
           <div class="flex gap-2 items-center">
+            Font Size
+            <NumberInput
+              initialValue={fontSize()}
+              onValueChange={(value) => {
+                setFontSize(value);
+              }}
+              min={1}
+              max={99}
+              step={0.1}
+            />
+          </div>
+          <div class="flex gap-2 items-center">
+            Font Weight
+            <NumberInput
+              initialValue={fontWeight()}
+              onValueChange={(value) => {
+                setFontWeight(value);
+              }}
+              min={100}
+              max={900}
+              step={100}
+            />
+          </div>
+          <div class="flex gap-2 items-center">
             <ColorPicker
               initialColor={textColor()}
               onValueChange={(value) => {
@@ -97,7 +126,10 @@ export function OverlayPage() {
         </div>
 
         <p
+          class="px-2"
           style={{
+            'font-size': `${fontSize()}px`,
+            'font-weight': `${fontWeight()}`,
             color: textColor().toString('rgba'),
           }}
         >
