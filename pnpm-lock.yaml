@@ -8,15 +8,27 @@ importers:
 
   .:
     dependencies:
+      '@tabler/icons-solidjs':
+        specifier: ^3.34.1
+        version: 3.34.1(solid-js@1.9.9)
       '@tanstack/router-plugin':
         specifier: ^1.131.37
         version: 1.131.37(vite-plugin-solid@2.11.8(solid-js@1.9.9)(vite@7.1.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(tsx@4.20.5)))(vite@7.1.5(@types/node@24.3.1)(jiti@2.5.1)(lightningcss@1.30.1)(tsx@4.20.5))
       '@tanstack/solid-router':
         specifier: ^1.131.37
         version: 1.131.37(solid-js@1.9.9)
+      '@zag-js/color-picker':
+        specifier: ^1.23.0
+        version: 1.23.0
+      '@zag-js/solid':
+        specifier: ^1.23.0
+        version: 1.23.0(solid-js@1.9.9)
       axios:
         specifier: ^1.8.1
         version: 1.11.0
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       detect-port:
         specifier: ^2.1.0
         version: 2.1.0
@@ -44,6 +56,9 @@ importers:
       solid-js:
         specifier: ^1.9.9
         version: 1.9.9
+      tailwind-merge:
+        specifier: ^3.3.1
+        version: 3.3.1
       tar:
         specifier: ^7.4.3
         version: 7.4.3
@@ -75,9 +90,6 @@ importers:
       nodemon:
         specifier: ^3.1.10
         version: 3.1.10
-      prettier:
-        specifier: ^3.6.2
-        version: 3.6.2
       rimraf:
         specifier: ^6.0.1
         version: 6.0.1
@@ -434,6 +446,15 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@floating-ui/core@1.7.3':
+    resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
+
+  '@floating-ui/dom@1.7.4':
+    resolution: {integrity: sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA==}
+
+  '@floating-ui/utils@0.2.10':
+    resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
+
   '@gar/promisify@1.1.3':
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
 
@@ -750,6 +771,11 @@ packages:
     peerDependencies:
       solid-js: ^1.6.12
 
+  '@solid-primitives/keyed@1.5.2':
+    resolution: {integrity: sha512-BgoEdqPw48URnI+L5sZIHdF4ua4Las1eWEBBPaoSFs42kkhnHue+rwCBPL2Z9ebOyQ75sUhUfOETdJfmv0D6Kg==}
+    peerDependencies:
+      solid-js: ^1.6.12
+
   '@solid-primitives/media@2.3.3':
     resolution: {integrity: sha512-hQ4hLOGvfbugQi5Eu1BFWAIJGIAzztq9x0h02xgBGl2l0Jaa3h7tg6bz5tV1NSuNYVGio4rPoa7zVQQLkkx9dA==}
     peerDependencies:
@@ -798,6 +824,14 @@ packages:
   '@szmarczak/http-timer@4.0.6':
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
     engines: {node: '>=10'}
+
+  '@tabler/icons-solidjs@3.34.1':
+    resolution: {integrity: sha512-OHE2zeO1c9o2PV4vgih/4siNT0mcvlQSmbWE85LsdbB6VKx1XOfDmkg9POc7PHJBVESJ7SJK5gXUFKGFK0P15g==}
+    peerDependencies:
+      solid-js: ^1.4.7
+
+  '@tabler/icons@3.34.1':
+    resolution: {integrity: sha512-9gTnUvd7Fd/DmQgr3MKY+oJLa1RfNsQo8c/ir3TJAWghOuZXodbtbVp0QBY2DxWuuvrSZFys0HEbv1CoiI5y6A==}
 
   '@tailwindcss/node@4.1.13':
     resolution: {integrity: sha512-eq3ouolC1oEFOAvOMOBAmfCIqZBJuvWvvYWh5h5iOYfe1HFC6+GZ6EIL0JdM3/niGRJmnrOc+8gl9/HGUaaptw==}
@@ -1011,6 +1045,44 @@ packages:
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
     engines: {node: '>=10.0.0'}
+
+  '@zag-js/anatomy@1.23.0':
+    resolution: {integrity: sha512-Exwv9QRI7D1Z/4GH/V3aUnkhvT5MCC5vNK4gJ4bbN95g9fvVkBwn05rRcf5taZBkoBtpWhR7t8zSN/Oo22WqqQ==}
+
+  '@zag-js/color-picker@1.23.0':
+    resolution: {integrity: sha512-bXRvjR1cy3IIVdmri9iebAMqKKe2ZDF148fj+oglR6VRIdMhV+5JlCVe5Qj8JFjvK5+jI0T3Cr6d+FlNbfxzgw==}
+
+  '@zag-js/color-utils@1.23.0':
+    resolution: {integrity: sha512-teO32H609UPvf86t3ikUSoiq3rJm0Gi+RPuzeLgubaB2DypIEVOabN7GeCACwT+Pqa2tTFvA32cQjaEcMdocQQ==}
+
+  '@zag-js/core@1.23.0':
+    resolution: {integrity: sha512-pqVWl7CLNnB5IxfetAx0nnC/qoGmMRjCLR7USVtid6RrcVS3ekMzXKzQUXV5Ro+6kG7Zggc8fubfsKj/sy6FAw==}
+
+  '@zag-js/dismissable@1.23.0':
+    resolution: {integrity: sha512-caP/70Wrc6exGkssdTvMwfJoBr+sE4jj41e96OAwHlXPiC0y0hmmyadTU1HvE6vjjTBUdBy7RTiGnLbPaodJig==}
+
+  '@zag-js/dom-query@1.23.0':
+    resolution: {integrity: sha512-D13sGkKS2Y6PNcSv/ZeCtjAyW3XgGtNDQW/VnjgNtlqfUfz1aehOr8DMz1t1HZ2yYaeZZce15MNqtA6GaCUqUw==}
+
+  '@zag-js/interact-outside@1.23.0':
+    resolution: {integrity: sha512-2w8A0KXe7aTEXSh91gGr/Ijz3VDzRkumC35qYcx42lNmmVSQ8sjW9rjTcJr4NVWEefkxU+oNeVBcCjWqbh1ZZw==}
+
+  '@zag-js/popper@1.23.0':
+    resolution: {integrity: sha512-CXG0X4ao4VV0ij42PsIOuhK2fSMdd3O7yBQDK8D4Ko1KbhlZ+WTB3p2kuWTR1W8vAwvhCSuJ5gQHAgdtLqwgKw==}
+
+  '@zag-js/solid@1.23.0':
+    resolution: {integrity: sha512-zA145AFKN9HR9kQqnILgTatwUwa5p/UaSv6P1ggvWeuEz5QQJQPGzwtJyz0fXJIOOn1mUCkqvE8aiIjsWfZGGw==}
+    peerDependencies:
+      solid-js: '>=1.1.3'
+
+  '@zag-js/store@1.23.0':
+    resolution: {integrity: sha512-ic2XcxrSq7ScwVr8m3P5iqz67SGxtjcrKCVhtepe+/m33EkmzhKH3O4y41dl3ll63EwJNcv5Xie27B81S8ElxA==}
+
+  '@zag-js/types@1.23.0':
+    resolution: {integrity: sha512-QGDoU7BhcwiP+egUrk4nGN3mPGIxz84R3lA3t2T13orq60drZxvF/AyfmEZ6VMDXwYj/CcE26xdWJxaureKvug==}
+
+  '@zag-js/utils@1.23.0':
+    resolution: {integrity: sha512-/V1RtDhsNC6WvzqEuOySwlOk15p6UU1ZnvhNIY1o/OWvjV9WZo8aIyQf338HbXIXPzc4lBh/PVYhDffv5CVe+A==}
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -1306,6 +1378,10 @@ packages:
   clone@1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+
+  clsx@2.1.1:
+    resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
+    engines: {node: '>=6'}
 
   color-convert@2.0.1:
     resolution: {integrity: sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==}
@@ -2398,6 +2474,9 @@ packages:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
 
+  proxy-compare@3.0.1:
+    resolution: {integrity: sha512-V9plBAt3qjMlS1+nC8771KNf6oJ12gExvaxnNzN/9yVRLdTv/lc+oJlnSzrdYDAvBfTStPCoiaCOTmTs0adv7Q==}
+
   proxy-from-env@1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
 
@@ -2673,6 +2752,9 @@ packages:
   supports-color@8.1.1:
     resolution: {integrity: sha512-MpUEN2OodtUzxvKQl72cUF7RQ5EiHsGvSsVG0ia9c5RbWGL2CI4C7EpPS8UTBIplnlzZiNuV56w+FuNxy3ty2Q==}
     engines: {node: '>=10'}
+
+  tailwind-merge@3.3.1:
+    resolution: {integrity: sha512-gBXpgUm/3rp1lMZZrM/w7D8GKqshif0zAymAhbCyIt8KMe+0v9DQ7cdYLR4FHH/cKpdTXb+A/tKKU3eolfsI+g==}
 
   tailwindcss@4.1.13:
     resolution: {integrity: sha512-i+zidfmTqtwquj4hMEwdjshYYgMbOrPzb9a0M3ZgNa0JMoZeFC6bxZvO8yr8ozS6ix2SDz0+mvryPeBs2TFE+w==}
@@ -3349,6 +3431,17 @@ snapshots:
   '@esbuild/win32-x64@0.25.9':
     optional: true
 
+  '@floating-ui/core@1.7.3':
+    dependencies:
+      '@floating-ui/utils': 0.2.10
+
+  '@floating-ui/dom@1.7.4':
+    dependencies:
+      '@floating-ui/core': 1.7.3
+      '@floating-ui/utils': 0.2.10
+
+  '@floating-ui/utils@0.2.10': {}
+
   '@gar/promisify@1.1.3': {}
 
   '@hapi/hoek@9.3.0': {}
@@ -3613,6 +3706,10 @@ snapshots:
       '@solid-primitives/utils': 6.3.2(solid-js@1.9.9)
       solid-js: 1.9.9
 
+  '@solid-primitives/keyed@1.5.2(solid-js@1.9.9)':
+    dependencies:
+      solid-js: 1.9.9
+
   '@solid-primitives/media@2.3.3(solid-js@1.9.9)':
     dependencies:
       '@solid-primitives/event-listener': 2.4.3(solid-js@1.9.9)
@@ -3665,6 +3762,13 @@ snapshots:
   '@szmarczak/http-timer@4.0.6':
     dependencies:
       defer-to-connect: 2.0.1
+
+  '@tabler/icons-solidjs@3.34.1(solid-js@1.9.9)':
+    dependencies:
+      '@tabler/icons': 3.34.1
+      solid-js: 1.9.9
+
+  '@tabler/icons@3.34.1': {}
 
   '@tailwindcss/node@4.1.13':
     dependencies:
@@ -3903,6 +4007,68 @@ snapshots:
     optional: true
 
   '@xmldom/xmldom@0.8.11': {}
+
+  '@zag-js/anatomy@1.23.0': {}
+
+  '@zag-js/color-picker@1.23.0':
+    dependencies:
+      '@zag-js/anatomy': 1.23.0
+      '@zag-js/color-utils': 1.23.0
+      '@zag-js/core': 1.23.0
+      '@zag-js/dismissable': 1.23.0
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/popper': 1.23.0
+      '@zag-js/types': 1.23.0
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/color-utils@1.23.0':
+    dependencies:
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/core@1.23.0':
+    dependencies:
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/dismissable@1.23.0':
+    dependencies:
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/interact-outside': 1.23.0
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/dom-query@1.23.0':
+    dependencies:
+      '@zag-js/types': 1.23.0
+
+  '@zag-js/interact-outside@1.23.0':
+    dependencies:
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/popper@1.23.0':
+    dependencies:
+      '@floating-ui/dom': 1.7.4
+      '@zag-js/dom-query': 1.23.0
+      '@zag-js/utils': 1.23.0
+
+  '@zag-js/solid@1.23.0(solid-js@1.9.9)':
+    dependencies:
+      '@solid-primitives/keyed': 1.5.2(solid-js@1.9.9)
+      '@zag-js/core': 1.23.0
+      '@zag-js/store': 1.23.0
+      '@zag-js/types': 1.23.0
+      '@zag-js/utils': 1.23.0
+      solid-js: 1.9.9
+
+  '@zag-js/store@1.23.0':
+    dependencies:
+      proxy-compare: 3.0.1
+
+  '@zag-js/types@1.23.0':
+    dependencies:
+      csstype: 3.1.3
+
+  '@zag-js/utils@1.23.0': {}
 
   abbrev@1.1.1: {}
 
@@ -4300,6 +4466,8 @@ snapshots:
       mimic-response: 1.0.1
 
   clone@1.0.4: {}
+
+  clsx@2.1.1: {}
 
   color-convert@2.0.1:
     dependencies:
@@ -5451,6 +5619,8 @@ snapshots:
       err-code: 2.0.3
       retry: 0.12.0
 
+  proxy-compare@3.0.1: {}
+
   proxy-from-env@1.1.0: {}
 
   pstree.remy@1.1.8: {}
@@ -5770,6 +5940,8 @@ snapshots:
   supports-color@8.1.1:
     dependencies:
       has-flag: 4.0.0
+
+  tailwind-merge@3.3.1: {}
 
   tailwindcss@4.1.13: {}
 
