@@ -16,6 +16,7 @@
     "serve:renderer": "vite preview",
     "dev": "node script/dev.js",
     "clean": "rimraf dist",
+    "format": "prettier --write .",
     "app:dir": "electron-builder --dir",
     "app:dist": "tsc && electron-builder",
     "app:deploy": "electron-builder --publish=always"
