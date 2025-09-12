@@ -14,7 +14,6 @@ export function createOverlayWindow() {
         transparent: true, // allow transparency
         alwaysOnTop: true, // stays above VN
         skipTaskbar: true, // don’t show in taskbar
-        resizable: false,
         focusable: false, // prevent stealing focus
         webPreferences: {},
         show: false,

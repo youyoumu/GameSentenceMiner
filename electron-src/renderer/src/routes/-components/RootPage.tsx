@@ -66,6 +66,14 @@ export function RootPage() {
         >
           Open Overlay
         </button>
+        <button
+          class="btn btn-neutral"
+          onClick={() => {
+            ipcRenderer.send('overlay:minimize');
+          }}
+        >
+          Close Overlay
+        </button>
       </div>
     </div>
   );

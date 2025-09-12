@@ -1,10 +1,13 @@
 import * as z from 'zod';
 
+const simple = z.object({
+    input: z.tuple([]),
+    output: z.void(),
+});
+
 export const overlayIPC = z.object({
-    'overlay:open': z.object({
-        input: z.tuple([]),
-        output: z.void(),
-    }),
+    'overlay:open': simple,
+    'overlay:minimize': simple,
 });
 export const overlayIPCChannels = overlayIPC.keyof();
 
