@@ -10,7 +10,7 @@ concurrently([
         name: 'vite',
     },
     {
-        command: 'nodemon --watch dist --exec pnpm run start:main',
+        command: 'nodemon --watch dist/main/main.js --exec pnpm run start:main',
         name: 'electron',
     },
 ]);
