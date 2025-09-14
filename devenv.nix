@@ -43,6 +43,7 @@ in
     fhs -c '
       fish -C "
         source ./.venv/bin/activate.fish
+        set -x SSL_CERT_FILE (python -m certifi)
         which python;
         which node;
         python --version;

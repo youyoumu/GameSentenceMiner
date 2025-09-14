@@ -12,7 +12,7 @@ import psutil
 import obsws_python as obs
 
 from GameSentenceMiner.util import configuration
-from GameSentenceMiner.util.configuration import get_app_directory, get_config, get_master_config, is_windows, save_full_config, reload_config, logger, gsm_status, gsm_state
+from GameSentenceMiner.util.configuration import get_app_directory, get_config, get_master_config, is_linux, is_windows, save_full_config, reload_config, logger, gsm_status, gsm_state
 from GameSentenceMiner.util.gsm_utils import sanitize_filename, make_unique_file_name
 import tkinter as tk
 from tkinter import messagebox
@@ -20,7 +20,12 @@ from tkinter import messagebox
 connection_pool: 'OBSConnectionPool' = None
 event_client: obs.EventClient = None
 obs_process_pid = None
-OBS_PID_FILE = os.path.join(configuration.get_app_directory(), 'obs-studio', 'obs_pid.txt')
+OBS_PID_FILE = (
+    os.path.join(configuration.get_app_directory(), 'obs-studio', 'obs_pid.txt')
+    if is_windows()
+    else
+    os.path.join('/tmp', 'obs_pid.txt')
+)
 obs_connection_manager = None
 logging.getLogger("obsws_python").setLevel(logging.CRITICAL)
 connecting = False
@@ -166,6 +171,8 @@ class OBSConnectionManager(threading.Thread):
             start_replay_buffer()
 
 def get_obs_path():
+    if is_linux():
+        return 'obs'
     return os.path.join(configuration.get_app_directory(), 'obs-studio/bin/64bit/obs64.exe')
 
 def is_process_running(pid):
@@ -192,11 +199,16 @@ def start_obs():
                 print("No process found with the stored PID. Launching new OBS instance.")
 
     obs_path = get_obs_path()
-    if not os.path.exists(obs_path):
-        print(f"OBS not found at {obs_path}. Please install OBS.")
+    if not os.path.exists(obs_path) and is_windows():
+        print(f"OBS not found at {obs_path}. Please install OBS...")
         return None
     try:
-        obs_process = subprocess.Popen([obs_path, '--disable-shutdown-check', '--portable', '--startreplaybuffer', ], cwd=os.path.dirname(obs_path))
+        obs_cmd = [obs_path, '--disable-shutdown-check', '--portable', '--startreplaybuffer', ]
+        cwd = os.path.dirname(obs_path)
+        if is_linux():
+            obs_cmd = [obs_path, '--disable-shutdown-check',  '--startreplaybuffer', ]
+            cwd = None
+        obs_process = subprocess.Popen(obs_cmd, cwd=cwd)
         obs_process_pid = obs_process.pid
         with open(OBS_PID_FILE, "w") as f:
             f.write(str(obs_process_pid))

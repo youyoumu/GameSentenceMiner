@@ -60,6 +60,7 @@ function getVenvPath(): string {
 function getPythonExecutablePath(): string {
     const platform = getPlatform();
     if (platform === 'linux') {
+        if (isDev) return path.join(BASE_DIR, '../../.venv/bin/python');
         return path.join(getVenvPath(), 'bin', 'python');
     }
 
