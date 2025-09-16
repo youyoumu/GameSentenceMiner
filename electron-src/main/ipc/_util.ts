@@ -6,23 +6,33 @@ import {
     IPCFromRendererChannel,
 } from '../../preload/preload.js';
 
-export function on<K extends IPCFromRendererChannel>(
-    channel: K,
-    listener: (
-        event: Electron.IpcMainEvent,
-        ...args: IPCFromRenderer[K]['input']
-    ) => IPCFromRenderer[K]['output'],
-) {
-    ipcMain.on(channel, (event, ...args) =>
-        listener(event, ...(args as IPCFromRenderer[K]['input'])),
-    );
-}
+type ChannelsWithPrefix<
+    All extends string,
+    Prefix extends string,
+> = All extends `${Prefix}:${string}` ? All : never;
 
-export class Sender {
+export class IPC<Prefix extends string> {
+    prefix: Prefix;
     #win: () => BrowserWindow | undefined;
-    constructor(win: () => BrowserWindow | undefined) {
-        this.#win = win;
+
+    constructor(options: { prefix: Prefix; win: () => BrowserWindow | undefined }) {
+        this.prefix = options.prefix;
+        this.#win = options.win;
     }
+
+    on<K extends ChannelsWithPrefix<IPCFromRendererChannel, Prefix>>(
+        channel: K,
+        listener: (
+            event: Electron.IpcMainEvent,
+            ...args: IPCFromRenderer[K]['input']
+        ) => IPCFromRenderer[K]['output'],
+    ) {
+        ipcMain.on(channel, (event, ...args) =>
+            listener(event, ...(args as IPCFromRenderer[K]['input'])),
+        );
+    }
+
+    register() {}
 
     send<K extends IPCFromMainChannel>(channel: K, payload: IPCFromMain[K]['output']) {
         this.#win()?.webContents.send(channel, payload);

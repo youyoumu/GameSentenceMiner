@@ -8,7 +8,6 @@ class Main2Window extends AppWindow {
             width: 1280,
             height: 1000,
             webPreferences: {
-                devTools: true,
                 preload: path.join(import.meta.dirname, '../../preload/preload.js'),
             },
         });

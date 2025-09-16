@@ -1,12 +1,23 @@
 import { overlayWindow } from '../window/overlay.js';
-import { on } from './_util.js';
+import { IPC } from './_util.js';
 
-export function registerOverlayIPC() {
-    on('overlay:open', () => {
-        overlayWindow.open();
-    });
+class OverlayIPC extends IPC<'overlay'> {
+    constructor() {
+        super({
+            prefix: 'overlay',
+            win: () => overlayWindow.win,
+        });
+    }
 
-    on('overlay:minimize', () => {
-        overlayWindow.win?.minimize();
-    });
+    register() {
+        this.on('overlay:open', () => {
+            overlayWindow.open();
+        });
+
+        this.on('overlay:minimize', () => {
+            overlayWindow.win?.minimize();
+        });
+    }
 }
+
+export const overlayIPC = new OverlayIPC();

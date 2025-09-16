@@ -50,12 +50,12 @@ import * as fs from 'node:fs';
 import { registerFrontPageIPC } from './ui/front.js';
 import { registerPythonIPC } from './ui/python.js';
 import { execFile } from 'node:child_process';
-import { registerOverlayIPC } from './ipc/overlay.js';
-import { registerYomitanIPC } from './ipc/yomitan.js';
 import { env } from './env.js';
 import { main2Window } from './window/main2.js';
 import { overlayWindow } from './window/overlay.js';
 import { yomitanWindow } from './window/yomitan.js';
+import { overlayIPC } from './ipc/overlay.js';
+import { yomitanIPC } from './ipc/yomitan.js';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;
@@ -88,8 +88,8 @@ function registerIPC() {
     registerOCRUtilsIPC();
     registerFrontPageIPC();
     registerPythonIPC();
-    registerOverlayIPC();
-    registerYomitanIPC();
+    overlayIPC.register();
+    yomitanIPC.register();
 }
 
 async function autoUpdate() {

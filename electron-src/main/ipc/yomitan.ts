@@ -1,14 +1,25 @@
 import { log } from '../logger.js';
 import { yomitanWindow } from '../window/yomitan.js';
-import { on } from './_util.js';
+import { IPC } from './_util.js';
 
-export function registerYomitanIPC() {
-    on('yomitan:open', () => {
-        log.info('Opening Yomitan');
-        yomitanWindow.open();
-    });
+class YomitanIPC extends IPC<'yomitan'> {
+    constructor() {
+        super({
+            prefix: 'yomitan',
+            win: () => yomitanWindow.win,
+        });
+    }
 
-    on('yomitan:minimize', () => {
-        yomitanWindow.win?.minimize();
-    });
+    register() {
+        this.on('yomitan:open', () => {
+            log.info('Opening Yomitan');
+            yomitanWindow.open();
+        });
+
+        this.on('yomitan:minimize', () => {
+            yomitanWindow.win?.minimize();
+        });
+    }
 }
+
+export const yomitanIPC = new YomitanIPC();
