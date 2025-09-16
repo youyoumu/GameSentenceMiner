@@ -1,5 +1,5 @@
 import { overlayWindow } from '../window/overlay.js';
-import { on } from './_util.js';
+import { on } from '../ui/_util.js';
 
 export function registerOverlayIPC() {
     on('overlay:open', () => {

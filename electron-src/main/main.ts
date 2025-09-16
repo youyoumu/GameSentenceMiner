@@ -51,9 +51,9 @@ import { registerFrontPageIPC } from './ui/front.js';
 import { registerPythonIPC } from './ui/python.js';
 import { execFile } from 'node:child_process';
 import { createMain2Window } from './window/main2.js';
-import { registerOverlayIPC } from './ui/overlay.js';
+import { registerOverlayIPC } from './ipc/overlay.js';
 import { createOverlayWindow } from './window/overlay.js';
-import { registerYomitanIPC } from './ui/yomitan.js';
+import { registerYomitanIPC } from './ipc/yomitan.js';
 import { createYomitanWindow } from './window/yomitan.js';
 import { env } from './env.js';
 
@@ -165,7 +165,7 @@ async function runCommand(
     command: string,
     args: string[],
     stdout: boolean,
-    stderr: boolean
+    stderr: boolean,
 ): Promise<void> {
     return new Promise((resolve, reject) => {
         const proc = spawn(command, args);
@@ -211,7 +211,7 @@ function runGSM(command: string, args: string[]): Promise<void> {
             originalLog(`stdout: ${data}`);
             if (data.toString().toLowerCase().includes('restart_for_settings_change')) {
                 console.log(
-                    'Restart Required for some of the settings saved to take affect! Restarting...'
+                    'Restart Required for some of the settings saved to take affect! Restarting...',
                 );
                 restartGSM();
                 return;
@@ -310,7 +310,7 @@ async function createWindow() {
                         mainWindow.reload();
                     }
                 },
-            })
+            }),
         );
     }
 
@@ -341,7 +341,6 @@ async function createWindow() {
         }
         mainWindow = null;
     });
-
 }
 
 async function update(shouldRestart: boolean = false, force = false): Promise<void> {
@@ -380,21 +379,21 @@ async function updateGSM(shouldRestart: boolean = false, force = false): Promise
                     'install',
                     '--upgrade',
                     '--prerelease=allow',
-                    PACKAGE_NAME
+                    PACKAGE_NAME,
                 ],
                 true,
-                true
+                true,
             );
         } catch (err) {
             console.error(
                 'Failed to install custom Python package. Falling back to default package: GameSentenceMiner, forcing upgrade.',
-                err
+                err,
             );
             await runCommand(
                 pythonPath,
                 ['-m', 'uv', 'pip', 'install', '--upgrade', '--prerelease=allow', PACKAGE_NAME],
                 true,
-                true
+                true,
             );
         }
         console.log('Update completed successfully.');
@@ -438,7 +437,7 @@ function showWindow() {
 
 export async function isPackageInstalled(
     pythonPath: string,
-    packageName: string
+    packageName: string,
 ): Promise<boolean> {
     try {
         await runCommand(pythonPath, ['-m', 'pip', 'show', packageName], false, false);
@@ -494,7 +493,12 @@ async function ensureAndRunGSM(pythonPath: string, retry = 1): Promise<void> {
     if (!isInstalled && !isDev) {
         console.log(`${APP_NAME} is not installed. Installing now...`);
         try {
-            await runCommand(pythonPath, ['-m', 'uv', 'pip', 'install', '--prerelease=allow', PACKAGE_NAME], true, true);
+            await runCommand(
+                pythonPath,
+                ['-m', 'uv', 'pip', 'install', '--prerelease=allow', PACKAGE_NAME],
+                true,
+                true,
+            );
             console.log('Installation complete.');
         } catch (err) {
             console.error('Failed to install package:', err);
@@ -511,9 +515,18 @@ async function ensureAndRunGSM(pythonPath: string, retry = 1): Promise<void> {
             console.log('Retrying installation of GameSentenceMiner...');
             await runCommand(
                 pythonPath,
-                ['-m', 'uv', 'pip', 'install', '--force-reinstall', '--no-config', '--prerelease=allow', PACKAGE_NAME],
+                [
+                    '-m',
+                    'uv',
+                    'pip',
+                    'install',
+                    '--force-reinstall',
+                    '--no-config',
+                    '--prerelease=allow',
+                    PACKAGE_NAME,
+                ],
                 true,
-                true
+                true,
             );
             console.log('after run command');
             await ensureAndRunGSM(pythonPath, retry - 1);
@@ -624,9 +637,9 @@ if (!app.requestSingleInstanceLock()) {
             });
         });
 
-  createMain2Window();
-  createOverlayWindow();
-  createYomitanWindow();
+        createMain2Window();
+        createOverlayWindow();
+        createYomitanWindow();
 
         app.on('window-all-closed', () => {
             if (process.platform !== 'darwin') {
