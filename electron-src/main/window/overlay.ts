@@ -8,8 +8,6 @@ export function createOverlayWindow() {
     overlayWindow = new BrowserWindow({
         width: 800, // adjust to your VN text area
         height: 200,
-        x: 100, // position where the VN text is
-        y: 600,
         frame: false, // no title bar
         transparent: true, // allow transparency
         alwaysOnTop: true, // stays above VN

@@ -74,6 +74,14 @@ export function RootPage() {
         >
           Close Overlay
         </button>
+        <button
+          class="btn btn-neutral"
+          onClick={() => {
+            ipcRenderer.send('yomitan:open');
+          }}
+        >
+          Open Yomitan
+        </button>
       </div>
     </div>
   );

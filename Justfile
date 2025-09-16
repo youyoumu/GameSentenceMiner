@@ -1,4 +1,4 @@
-set shell := ["pwsh.exe", "-c"]
+set windows-shell := ["pwsh.exe", "-c"]
 
 venv:
     pwsh.exe -NoExit -Command ". ./.venv/Scripts/Activate.ps1"
@@ -11,3 +11,6 @@ format:
 
 typecheck:
     uvx pyright
+
+devenv:
+    devenv shell -v

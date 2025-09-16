@@ -20,7 +20,7 @@ function makeLock(name: string) {
 
 export default defineConfig([
   {
-    entry: ['electron-src/main/main.ts'],
+    entry: ['electron-src/main/main.ts', 'electron-src/main/extension/yomitan-shim.ts'],
     outDir: 'dist/main',
     unbundle: true,
     skipNodeModulesBundle: true,

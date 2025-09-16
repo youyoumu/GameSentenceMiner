@@ -1,11 +1,16 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { overlayIPC, OverlayIPC, overlayIPCChannels, OverlayIPCChannels } from './ipc/overlay.js';
+import { overlayIPC } from './ipc/overlay.js';
+import { yomitanIPC } from './ipc/yomitan.js';
+import * as z from 'zod';
 
-export type IPC = OverlayIPC;
-export type IPCChannel = OverlayIPCChannels;
+const ipc = z.object({
+    ...overlayIPC.shape,
+    ...yomitanIPC.shape,
+});
+const ipcChannels = ipc.keyof();
 
-const ipc = overlayIPC;
-const ipcChannels = overlayIPCChannels;
+export type IPC = z.infer<typeof ipc>;
+export type IPCChannel = z.infer<typeof ipcChannels>;
 
 export type IPCRenderer = {
     send: (channel: IPCChannel, ...args: IPC[IPCChannel]['input']) => void;

@@ -53,6 +53,8 @@ import { execFile } from 'node:child_process';
 import { createMain2Window } from './window/main2.js';
 import { registerOverlayIPC } from './ui/overlay.js';
 import { createOverlayWindow } from './window/overlay.js';
+import { registerYomitanIPC } from './ui/yomitan.js';
+import { createYomitanWindow } from './window/yomitan.js';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;
@@ -85,7 +87,8 @@ function registerIPC() {
     registerOCRUtilsIPC();
     registerFrontPageIPC();
     registerPythonIPC();
-    registerOverlayIPC()
+    registerOverlayIPC();
+    registerYomitanIPC();
 }
 
 async function autoUpdate() {
@@ -554,7 +557,6 @@ async function processArgs() {
 }
 
 app.disableHardwareAcceleration();
-app.setPath('userData', path.join(BASE_DIR, 'electron'));
 
 if (!app.requestSingleInstanceLock()) {
     app.whenReady().then(() => {
@@ -589,16 +591,16 @@ if (!app.requestSingleInstanceLock()) {
                     fs.unlinkSync(path.join(BASE_DIR, 'update_python.flag'));
                 }
             }
-            try {
-                ensureAndRunGSM(pythonPath).then(async () => {
-                    if (!isUpdating) {
-                        quit();
-                    }
-                });
-            } catch (err) {
-                console.log('Failed to run GSM, attempting repair of python package...', err);
-                await updateGSM(true, true);
-            }
+            // try {
+            //     ensureAndRunGSM(pythonPath).then(async () => {
+            //         if (!isUpdating) {
+            //             quit();
+            //         }
+            //     });
+            // } catch (err) {
+            //     console.log('Failed to run GSM, attempting repair of python package...', err);
+            //     await updateGSM(true, true);
+            // }
 
             checkForUpdates().then(({ updateAvailable, latestVersion }) => {
                 if (updateAvailable) {
@@ -621,6 +623,7 @@ if (!app.requestSingleInstanceLock()) {
 
   createMain2Window();
   createOverlayWindow();
+  createYomitanWindow();
 
         app.on('window-all-closed', () => {
             if (process.platform !== 'darwin') {

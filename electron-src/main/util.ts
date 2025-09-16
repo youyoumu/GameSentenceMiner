@@ -10,7 +10,9 @@ export const isMac = process.platform === 'darwin';
 export const cpuModel = os.cpus()[0]?.model || null;
 export const isArmMac: boolean = isMac && !!cpuModel && /Apple M\d/i.test(cpuModel);
 
-export const APP_NAME = 'GameSentenceMiner';
+// electron app name
+export const APP_NAME = app.getName()
+// python package name
 export const PACKAGE_NAME = "GameSentenceMiner";
 export const execFileAsync = promisify(execFile);
 
@@ -19,9 +21,9 @@ export const isDev = !app.isPackaged;
 export const BASE_DIR =
     isDev && process.env.INIT_CWD
         ? path.join(process.env.INIT_CWD, '.APPDATA', APP_NAME)
-        : process.env.APPDATA
-          ? path.join(process.env.APPDATA, APP_NAME) // Windows
-          : path.join(os.homedir(), '.config', APP_NAME); // macOS/Linux
+        : app.getPath("userData");
+
+app.setPath('userData', path.join(BASE_DIR, 'electron'));
 
 export const getPlatform = (): SupportedPlatform => {
     const platform = os.platform();
