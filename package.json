@@ -5,7 +5,7 @@
   "description": "GameSentenceMiner",
   "main": "dist/main/main.js",
   "scripts": {
-    "start:main": "wait-on --reverse .tsdown.lock.main .tsdown.lock.preload && electron .",
+    "start:main": "wait-on --reverse .tsdown.lock.main .tsdown.lock.preload && ROARR_LOG=true electron .",
     "build:main": "NODE_ENV=production pnpm run clean && tsdown",
     "typecheck:main": "tsc --noEmit",
     "typecheck:renderer": "tsc --noEmit --project electron-src/renderer/tsconfig.json",
@@ -119,6 +119,7 @@
     "node-window-manager": "^2.2.4",
     "nodejs-file-downloader": "^4.13.0",
     "obs-websocket-js": "^5.0.6",
+    "roarr": "^7.21.1",
     "solid-js": "^1.9.9",
     "tailwind-merge": "^3.3.1",
     "tar": "^7.4.3",

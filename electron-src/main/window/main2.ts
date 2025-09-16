@@ -2,8 +2,9 @@ import { BrowserWindow } from 'electron';
 import { isDev } from '../util.js';
 import * as path from 'path';
 
+export let main2: BrowserWindow | null = null;
 export function createMain2Window() {
-    const win = new BrowserWindow({
+    main2 = new BrowserWindow({
         width: 1280,
         height: 1000,
         webPreferences: {
@@ -13,8 +14,8 @@ export function createMain2Window() {
     });
 
     if (isDev) {
-        win.loadURL('http://localhost:3000');
+        main2.loadURL('http://localhost:3000');
     } else {
-        win.loadFile(path.join(process.resourcesPath, 'renderer', 'index.html'));
+        main2.loadFile(path.join(process.resourcesPath, 'renderer', 'index.html'));
     }
 }

@@ -5,6 +5,7 @@ import 'dotenv/config';
 export const env = createEnv({
     server: {
         GSM_AUTOLAUNCH: z.stringbool().default(true),
+        ROARR_LOG: z.stringbool(),
     },
     runtimeEnv: process.env,
     emptyStringAsUndefined: true,

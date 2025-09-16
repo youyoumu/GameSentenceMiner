@@ -2,10 +2,12 @@ import { contextBridge, ipcRenderer } from 'electron';
 import { overlayIPC } from './ipc/overlay.js';
 import { yomitanIPC } from './ipc/yomitan.js';
 import * as z from 'zod';
+import { logIPC } from './ipc/log.js';
 
 const ipc = z.object({
     ...overlayIPC.shape,
     ...yomitanIPC.shape,
+    ...logIPC.shape,
 });
 const ipcChannels = ipc.keyof();
 
@@ -14,6 +16,7 @@ export type IPCChannel = z.infer<typeof ipcChannels>;
 
 export type IPCRenderer = {
     send: (channel: IPCChannel, ...args: IPC[IPCChannel]['input']) => void;
+    on: (channel: IPCChannel, callback: (payload: IPC[IPCChannel]['output']) => void) => void;
 };
 const ipcRenderer_: IPCRenderer = {
     send: (channel, ...args) => {
@@ -32,6 +35,9 @@ const ipcRenderer_: IPCRenderer = {
         }
 
         ipcRenderer.send(channel, ...args);
+    },
+    on: (channel, callback) => {
+        ipcRenderer.on(channel, (_, payload) => callback(payload));
     },
 };
 

@@ -1,4 +1,4 @@
-import { createEffect, createSignal } from 'solid-js';
+import { createEffect, createSignal, onMount } from 'solid-js';
 
 const daisyUIThemes = [
   'light',
@@ -42,6 +42,12 @@ export function RootPage() {
   const [themeIndex, setThemeIndex] = createSignal(0);
   createEffect(() => {
     document.body.setAttribute('data-theme', daisyUIThemes[themeIndex()]);
+  });
+
+  onMount(() => {
+    ipcRenderer.on('log:send', (payload) => {
+      console.log(payload);
+    });
   });
 
   return (

@@ -5,8 +5,7 @@ import path from 'path';
 import { writeFile } from 'fs/promises';
 import type { ReadableStream } from 'stream/web';
 import StreamZip from 'node-stream-zip';
-
-//TODO: logging
+import { log } from '../logger.js';
 
 export const yomitanPath = path.join(app.getPath('userData'), 'extension', 'yomitan');
 
@@ -39,7 +38,7 @@ export async function extractYomitan(zipPath: string) {
     const zip = new StreamZip.async({ file: zipPath });
     try {
         const count = await zip.extract(null, yomitanPath);
-        console.log(`Extracted ${count} entries to ${yomitanPath}`);
+        log.info(`Extracted ${count} entries to ${yomitanPath}`);
     } finally {
         await zip.close();
     }
@@ -50,6 +49,7 @@ export async function extractYomitan(zipPath: string) {
         try {
             shimFile(target, path.join(import.meta.dirname, './yomitan-shim.js'));
             console.log(`Shimmed: ${target}`);
+            log.info(`Shimmed: ${target}`);
         } catch (err) {
             console.error(`Failed to shim ${target}:`, err);
         }
