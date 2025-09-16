@@ -4,7 +4,7 @@ import {
     IPCFromMainChannel,
     IPCFromRenderer,
     IPCFromRendererChannel,
-} from '../../preload/preload.js';
+} from '#preload/preload.js';
 
 type ChannelsWithPrefix<
     All extends string,

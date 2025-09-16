@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+
+    /* Strictness */
+    "strict": true,
+
+    // TODO: enable this
+    // "noUncheckedIndexedAccess": true,
+    // "noImplicitOverride": true,
+    // "verbatimModuleSyntax": true,
+    // "noUnusedParameters": true,
+    // "noFallthroughCasesInSwitch": true,
+    // "noUncheckedSideEffectImports": true,
+
+    "lib": ["es2022"],
+    "module": "ESNext",
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "paths": {
+      "#/*": ["./*"],
+      "#preload/*": ["../preload/*"],
+      "#assets/*": ["../assets/*"]
+    }
+  },
+  "include": ["./**/*"]
+}
