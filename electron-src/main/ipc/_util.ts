@@ -1,11 +1,21 @@
 import { BrowserWindow, ipcMain } from 'electron';
-import { IPC, IPCChannel } from '../../preload/preload.js';
+import {
+    IPCFromMain,
+    IPCFromMainChannel,
+    IPCFromRenderer,
+    IPCFromRendererChannel,
+} from '../../preload/preload.js';
 
-export function on<K extends IPCChannel>(
+export function on<K extends IPCFromRendererChannel>(
     channel: K,
-    listener: (event: Electron.IpcMainEvent, ...args: IPC[K]['input']) => IPC[K]['output'],
+    listener: (
+        event: Electron.IpcMainEvent,
+        ...args: IPCFromRenderer[K]['input']
+    ) => IPCFromRenderer[K]['output'],
 ) {
-    ipcMain.on(channel, (event, ...args) => listener(event, ...(args as IPC[K]['input'])));
+    ipcMain.on(channel, (event, ...args) =>
+        listener(event, ...(args as IPCFromRenderer[K]['input'])),
+    );
 }
 
 export class Sender {
@@ -14,7 +24,7 @@ export class Sender {
         this.#win = win;
     }
 
-    send<K extends IPCChannel>(channel: K, payload: IPC[K]['output']) {
+    send<K extends IPCFromMainChannel>(channel: K, payload: IPCFromMain[K]['output']) {
         this.#win()?.webContents.send(channel, payload);
     }
 }

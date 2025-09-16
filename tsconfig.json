@@ -11,5 +11,6 @@
     "moduleResolution": "node16",
     "resolveJsonModule": true
   },
-  "include": ["electron-src/**/*"]
+  "include": ["electron-src/**/*"],
+  "exclude": ["electron-src/renderer/**/*"]
 }

@@ -4,31 +4,43 @@ import { yomitanIPC } from './ipc/yomitan.js';
 import * as z from 'zod';
 import { logIPC } from './ipc/log.js';
 
-const ipc = z.object({
-    ...overlayIPC.shape,
-    ...yomitanIPC.shape,
-    ...logIPC.shape,
+const ipcFromRenderer = z.object({
+    ...overlayIPC.renderer.shape,
+    ...yomitanIPC.renderer.shape,
 });
-const ipcChannels = ipc.keyof();
+const ipcFromRendererChannel = ipcFromRenderer.keyof();
+export type IPCFromRenderer = z.infer<typeof ipcFromRenderer>;
+export type IPCFromRendererChannel = z.infer<typeof ipcFromRendererChannel>;
 
-export type IPC = z.infer<typeof ipc>;
-export type IPCChannel = z.infer<typeof ipcChannels>;
+const ipcFromMain = z.object({
+    ...logIPC.main.shape,
+});
+const ipcFromMainChannel = ipcFromMain.keyof();
+export type IPCFromMain = z.infer<typeof ipcFromMain>;
+export type IPCFromMainChannel = z.infer<typeof ipcFromMainChannel>;
 
 export type IPCRenderer = {
-    send: (channel: IPCChannel, ...args: IPC[IPCChannel]['input']) => void;
-    on: (channel: IPCChannel, callback: (payload: IPC[IPCChannel]['output']) => void) => void;
+    send: (
+        channel: IPCFromRendererChannel,
+        ...args: IPCFromRenderer[IPCFromRendererChannel]['input']
+    ) => void;
+    on: (
+        channel: IPCFromMainChannel,
+        callback: (payload: IPCFromMain[IPCFromMainChannel]['output']) => void,
+    ) => void;
 };
+
 const ipcRenderer_: IPCRenderer = {
     send: (channel, ...args) => {
         //check if channel valid
-        const channelResult = ipcChannels.safeParse(channel);
+        const channelResult = ipcFromRendererChannel.safeParse(channel);
         if (channelResult.error) {
             console.error('Invalid channel', channelResult);
             return;
         }
 
         //check if args valid
-        const argsResult = ipc.shape[channel].shape['input'].safeParse(args);
+        const argsResult = ipcFromRenderer.shape[channel].shape['input'].safeParse(args);
         if (argsResult.error) {
             console.error('Invalid args', argsResult);
             return;
