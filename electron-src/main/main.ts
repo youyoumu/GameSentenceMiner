@@ -50,12 +50,12 @@ import * as fs from 'node:fs';
 import { registerFrontPageIPC } from './ui/front.js';
 import { registerPythonIPC } from './ui/python.js';
 import { execFile } from 'node:child_process';
-import { createMain2Window } from './window/main2.js';
 import { registerOverlayIPC } from './ipc/overlay.js';
-import { createOverlayWindow } from './window/overlay.js';
 import { registerYomitanIPC } from './ipc/yomitan.js';
-import { createYomitanWindow } from './window/yomitan.js';
 import { env } from './env.js';
+import { main2Window } from './window/main2.js';
+import { overlayWindow } from './window/overlay.js';
+import { yomitanWindow } from './window/yomitan.js';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;
@@ -637,9 +637,9 @@ if (!app.requestSingleInstanceLock()) {
             });
         });
 
-        createMain2Window();
-        createOverlayWindow();
-        createYomitanWindow();
+        main2Window.create();
+        overlayWindow.create();
+        yomitanWindow.create();
 
         app.on('window-all-closed', () => {
             if (process.platform !== 'darwin') {

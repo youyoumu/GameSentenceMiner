@@ -5,10 +5,10 @@ import { on } from './_util.js';
 export function registerYomitanIPC() {
     on('yomitan:open', () => {
         log.info('Opening Yomitan');
-        yomitanWindow.show();
+        yomitanWindow.open();
     });
 
     on('yomitan:minimize', () => {
-        yomitanWindow.minimize();
+        yomitanWindow.win?.minimize();
     });
 }

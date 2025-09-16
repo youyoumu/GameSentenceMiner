@@ -19,8 +19,8 @@ export function on<K extends IPCFromRendererChannel>(
 }
 
 export class Sender {
-    #win: () => BrowserWindow | null;
-    constructor(win: () => BrowserWindow | null) {
+    #win: () => BrowserWindow | undefined;
+    constructor(win: () => BrowserWindow | undefined) {
         this.#win = win;
     }
 
