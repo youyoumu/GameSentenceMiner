@@ -2,7 +2,8 @@ import concurrently from 'concurrently';
 
 concurrently([
     {
-        command: 'tsdown --watch electron-src/main --watch electron-src/preload',
+        command:
+            'NODE_ENV=development tsdown --watch electron-src/main --watch electron-src/preload',
         name: 'tsdown',
     },
     {

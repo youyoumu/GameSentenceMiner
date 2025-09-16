@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@t3-oss/env-core':
+        specifier: ^0.13.8
+        version: 0.13.8(typescript@5.9.2)(zod@4.1.7)
       '@tabler/icons-solidjs':
         specifier: ^3.34.1
         version: 3.34.1(solid-js@1.9.9)
@@ -38,6 +41,9 @@ importers:
       detect-port:
         specifier: ^2.1.0
         version: 2.1.0
+      dotenv:
+        specifier: ^17.2.2
+        version: 17.2.2
       electron-log:
         specifier: ^5.3.2
         version: 5.4.3
@@ -839,6 +845,23 @@ packages:
     resolution: {integrity: sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==}
     engines: {node: '>=10'}
 
+  '@t3-oss/env-core@0.13.8':
+    resolution: {integrity: sha512-L1inmpzLQyYu4+Q1DyrXsGJYCXbtXjC4cICw1uAKv0ppYPQv656lhZPU91Qd1VS6SO/bou1/q5ufVzBGbNsUpw==}
+    peerDependencies:
+      arktype: ^2.1.0
+      typescript: '>=5.0.0'
+      valibot: ^1.0.0-beta.7 || ^1.0.0
+      zod: ^3.24.0 || ^4.0.0-beta.0
+    peerDependenciesMeta:
+      arktype:
+        optional: true
+      typescript:
+        optional: true
+      valibot:
+        optional: true
+      zod:
+        optional: true
+
   '@tabler/icons-solidjs@3.34.1':
     resolution: {integrity: sha512-OHE2zeO1c9o2PV4vgih/4siNT0mcvlQSmbWE85LsdbB6VKx1XOfDmkg9POc7PHJBVESJ7SJK5gXUFKGFK0P15g==}
     peerDependencies:
@@ -1571,6 +1594,10 @@ packages:
 
   dotenv@16.6.1:
     resolution: {integrity: sha512-uBq4egWHTcTt33a72vpSG0z3HnPuIl6NqYcTrKEg2azoEyl2hpW0zqlxysq2pK9HlDIHyHyakeYaYnSAwd8bow==}
+    engines: {node: '>=12'}
+
+  dotenv@17.2.2:
+    resolution: {integrity: sha512-Sf2LSQP+bOlhKWWyhFsn0UsfdK/kCWRv1iuA2gXAwt3dyNabr6QSj00I2V10pidqz69soatm9ZwZvpQMTIOd5Q==}
     engines: {node: '>=12'}
 
   dts-resolver@2.1.2:
@@ -3799,6 +3826,11 @@ snapshots:
     dependencies:
       defer-to-connect: 2.0.1
 
+  '@t3-oss/env-core@0.13.8(typescript@5.9.2)(zod@4.1.7)':
+    optionalDependencies:
+      typescript: 5.9.2
+      zod: 4.1.7
+
   '@tabler/icons-solidjs@3.34.1(solid-js@1.9.9)':
     dependencies:
       '@tabler/icons': 3.34.1
@@ -4710,6 +4742,8 @@ snapshots:
       dotenv: 16.6.1
 
   dotenv@16.6.1: {}
+
+  dotenv@17.2.2: {}
 
   dts-resolver@2.1.2: {}
 

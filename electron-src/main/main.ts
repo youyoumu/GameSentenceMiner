@@ -55,6 +55,7 @@ import { registerOverlayIPC } from './ui/overlay.js';
 import { createOverlayWindow } from './window/overlay.js';
 import { registerYomitanIPC } from './ui/yomitan.js';
 import { createYomitanWindow } from './window/yomitan.js';
+import { env } from './env.js';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;
@@ -591,16 +592,18 @@ if (!app.requestSingleInstanceLock()) {
                     fs.unlinkSync(path.join(BASE_DIR, 'update_python.flag'));
                 }
             }
-            // try {
-            //     ensureAndRunGSM(pythonPath).then(async () => {
-            //         if (!isUpdating) {
-            //             quit();
-            //         }
-            //     });
-            // } catch (err) {
-            //     console.log('Failed to run GSM, attempting repair of python package...', err);
-            //     await updateGSM(true, true);
-            // }
+            if (env.GSM_AUTOLAUNCH) {
+                try {
+                    ensureAndRunGSM(pythonPath).then(async () => {
+                        if (!isUpdating) {
+                            quit();
+                        }
+                    });
+                } catch (err) {
+                    console.log('Failed to run GSM, attempting repair of python package...', err);
+                    await updateGSM(true, true);
+                }
+            }
 
             checkForUpdates().then(({ updateAvailable, latestVersion }) => {
                 if (updateAvailable) {

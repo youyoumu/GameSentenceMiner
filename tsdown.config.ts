@@ -18,9 +18,13 @@ function makeLock(name: string) {
   };
 }
 
+const copy: string[] = [];
+if (process.env.NODE_ENV === 'development') copy.push('.env');
+
 export default defineConfig([
   {
     entry: ['electron-src/main/main.ts', 'electron-src/main/extension/yomitan-shim.ts'],
+    copy: copy,
     outDir: 'dist/main',
     unbundle: true,
     skipNodeModulesBundle: true,
