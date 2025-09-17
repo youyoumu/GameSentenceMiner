@@ -1,6 +1,7 @@
 import { isDev } from '../util.js';
 import * as path from 'path';
 import { AppWindow } from './_util.js';
+import preload from '#preload/preload';
 
 class Main2Window extends AppWindow {
     constructor() {
@@ -8,7 +9,7 @@ class Main2Window extends AppWindow {
             width: 1280,
             height: 1000,
             webPreferences: {
-                preload: path.join(import.meta.dirname, '../../preload/preload.js'),
+                preload,
             },
         });
     }

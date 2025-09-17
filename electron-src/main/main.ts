@@ -21,7 +21,7 @@ import {
     isConnected,
     isDev,
     PACKAGE_NAME,
-} from './util.js';
+} from '#/util.js';
 import electronUpdater, { type AppUpdater } from 'electron-updater';
 import { fileURLToPath } from 'node:url';
 
