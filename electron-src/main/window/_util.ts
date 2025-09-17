@@ -1,3 +1,4 @@
+import { env } from '#/env';
 import { BrowserWindow } from 'electron';
 
 type BrowserWindowOptions = ConstructorParameters<typeof BrowserWindow>[0];
@@ -6,6 +7,13 @@ export class AppWindow {
     win: BrowserWindow | undefined;
 
     constructor(options: BrowserWindowOptions) {
+        options = options ?? {};
+        const overrideOptions: BrowserWindowOptions = {
+            webPreferences: {
+                preload: env.PRELOAD_PATH,
+            },
+        };
+        Object.assign(options, overrideOptions);
         this.options = options;
     }
 

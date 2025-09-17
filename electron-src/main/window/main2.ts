@@ -6,9 +6,6 @@ class Main2Window extends AppWindow {
         super({
             width: 1280,
             height: 1000,
-            webPreferences: {
-                preload: env.PRELOAD_PATH,
-            },
         });
     }
 
