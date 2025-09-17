@@ -3,6 +3,8 @@ import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import solidPlugin from 'vite-plugin-solid';
+import 'dotenv/config';
+
 // import webfontDownload from 'vite-plugin-webfont-dl';
 
 // https://vitejs.dev/config/
@@ -29,5 +31,8 @@ export default defineConfig({
   build: {
     outDir: resolve(__dirname, './dist/renderer'),
     emptyOutDir: true,
+  },
+  server: {
+    port: parseInt(process.env.GSM_RENDERER_PORT || '3000'),
   },
 });

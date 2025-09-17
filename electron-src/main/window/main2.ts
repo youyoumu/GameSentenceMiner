@@ -14,16 +14,7 @@ class Main2Window extends AppWindow {
 
     create() {
         super.create();
-
-        this.win?.loadURL('http://localhost:3000');
-        // if (isDev) {
-        //     this.win?.loadFile(indexHtml, {
-        //         hash: '/',
-        //     });
-        //     this.win?.loadURL('http://localhost:3000');
-        // } else {
-        //     this.win?.loadFile(indexHtml);
-        // }
+        this.win?.loadURL(env.RENDERER_URL);
     }
 }
 

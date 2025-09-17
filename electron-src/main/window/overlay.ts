@@ -1,3 +1,4 @@
+import { env } from '#/env.js';
 import { AppWindow } from './_util.js';
 
 class OverlayWindow extends AppWindow {
@@ -18,7 +19,7 @@ class OverlayWindow extends AppWindow {
     create() {
         super.create();
         this.win?.setIgnoreMouseEvents(false); // set true if you want clicks to pass through
-        this.win?.loadURL('http://localhost:3000/overlay');
+        this.win?.loadURL(env.RENDERER_URL);
     }
 }
 

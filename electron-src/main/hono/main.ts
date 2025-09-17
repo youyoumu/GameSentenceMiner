@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { readFile } from 'node:fs/promises';
 import mime from 'mime';
 import { env } from '#/env';
+import { log } from '#/logger';
 
 const app = new Hono();
 
@@ -28,7 +29,10 @@ app.get('*', async (c) => {
     return c.html(html);
 });
 
-serve({
-    fetch: app.fetch,
-    port: 3000,
-});
+if (!env.DEV) {
+    log('Starting HTTP server on port ' + env.GSM_RENDERER_PORT);
+    serve({
+        fetch: app.fetch,
+        port: env.GSM_RENDERER_PORT,
+    });
+}

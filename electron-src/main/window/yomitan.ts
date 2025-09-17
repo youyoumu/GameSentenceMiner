@@ -1,6 +1,6 @@
 import { session } from 'electron';
-import { yomitanExtension } from '../extension/yomitan.js';
 import { AppWindow } from './_util.js';
+import { yomitanExtension } from '#/extension/yomitan.js';
 
 class YomitanWindow extends AppWindow {
     constructor() {
