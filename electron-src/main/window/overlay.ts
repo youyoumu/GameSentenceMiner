@@ -1,5 +1,3 @@
-import { isDev } from '../util.js';
-import * as path from 'path';
 import { AppWindow } from './_util.js';
 
 class OverlayWindow extends AppWindow {
@@ -20,14 +18,7 @@ class OverlayWindow extends AppWindow {
     create() {
         super.create();
         this.win?.setIgnoreMouseEvents(false); // set true if you want clicks to pass through
-        if (isDev) {
-            this.win?.loadURL('http://localhost:3000/overlay');
-        } else {
-            // TODO: make sure this even works
-            this.win?.loadFile(path.join(process.resourcesPath, 'renderer', 'index.html'), {
-                hash: '/overlay',
-            });
-        }
+        this.win?.loadURL('http://localhost:3000/overlay');
     }
 }
 

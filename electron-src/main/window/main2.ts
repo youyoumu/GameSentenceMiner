@@ -1,7 +1,5 @@
-import { isDev } from '../util.js';
-import * as path from 'path';
 import { AppWindow } from './_util.js';
-import preload from '#preload/preload';
+import { env } from '#/env.js';
 
 class Main2Window extends AppWindow {
     constructor() {
@@ -9,18 +7,23 @@ class Main2Window extends AppWindow {
             width: 1280,
             height: 1000,
             webPreferences: {
-                preload,
+                preload: env.PRELOAD_PATH,
             },
         });
     }
 
     create() {
         super.create();
-        if (isDev) {
-            this.win?.loadURL('http://localhost:3000');
-        } else {
-            this.win?.loadFile(path.join(process.resourcesPath, 'renderer', 'index.html'));
-        }
+
+        this.win?.loadURL('http://localhost:3000');
+        // if (isDev) {
+        //     this.win?.loadFile(indexHtml, {
+        //         hash: '/',
+        //     });
+        //     this.win?.loadURL('http://localhost:3000');
+        // } else {
+        //     this.win?.loadFile(indexHtml);
+        // }
     }
 }
 

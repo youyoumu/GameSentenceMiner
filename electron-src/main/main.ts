@@ -56,6 +56,7 @@ import { overlayWindow } from './window/overlay.js';
 import { yomitanWindow } from './window/yomitan.js';
 import { overlayIPC } from './ipc/overlay.js';
 import { yomitanIPC } from './ipc/yomitan.js';
+import '#/hono/main';
 
 export let mainWindow: BrowserWindow | null = null;
 let tray: Tray;

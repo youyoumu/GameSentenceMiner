@@ -6,7 +6,7 @@
   "main": "dist/main/main.js",
   "scripts": {
     "start:main": "wait-on --reverse .tsdown.lock && ROARR_LOG=true electron .",
-    "build:main": "NODE_ENV=production pnpm run clean && tsdown",
+    "build:main": "NODE_ENV=production pnpm run clean:main && pnpm run clean:renderer && tsdown",
     "typecheck:main": "tsc --noEmit --project electron-src/main/tsconfig.json",
     "typecheck:preload": "tsc --noEmit --project electron-src/preload/tsconfig.json",
     "typecheck:renderer": "tsc --noEmit --project electron-src/renderer/tsconfig.json",
@@ -16,7 +16,11 @@
     "preview:renderer": "vite preview --port 3000",
     "build:renderer": "vite build",
     "serve:renderer": "vite preview",
+    "build": "pnpm run build:main && pnpm run build:renderer",
     "dev": "node script/dev.js",
+    "clean:main": "rimraf dist/main",
+    "clean:renderer": "rimraf dist/renderer",
+    "clean:preload": "rimraf dist/preload",
     "clean": "rimraf dist",
     "format": "prettier --write .",
     "app:dir": "electron-builder --dir",
@@ -101,6 +105,7 @@
     "wait-on": "^8.0.4"
   },
   "dependencies": {
+    "@hono/node-server": "^1.19.3",
     "@t3-oss/env-core": "^0.13.8",
     "@tabler/icons-solidjs": "^3.34.1",
     "@tanstack/router-plugin": "^1.131.37",
@@ -117,6 +122,8 @@
     "electron-store": "^10.0.1",
     "electron-updater": "^6.3.9",
     "fuse.js": "^7.1.0",
+    "hono": "^4.9.7",
+    "mime": "^4.1.0",
     "node-stream-zip": "^1.15.0",
     "node-window-manager": "^2.2.4",
     "nodejs-file-downloader": "^4.13.0",

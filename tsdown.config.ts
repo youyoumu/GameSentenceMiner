@@ -66,32 +66,6 @@ const main = defineConfig({
     '#preload': path.resolve(import.meta.dirname, 'electron-src/preload'),
     '#assets': path.resolve(import.meta.dirname, 'electron-src/assets'),
   },
-  plugins: [
-    {
-      name: 'copy-preload',
-      resolveId(source: string) {
-        if (source === '#preload/preload') {
-          return source;
-        }
-        return null;
-      },
-      load(id: string): string | null {
-        if (id === '#preload/preload') {
-          const refId = this.emitFile({
-            type: 'asset',
-            name: 'preload.js',
-            source: fs.readFileSync(path.resolve('dist/preload/preload.js')),
-          });
-
-          return `
-                  import { fileURLToPath } from "node:url";
-                  export default fileURLToPath(import.meta.ROLLUP_FILE_URL_${refId});
-                `;
-        }
-        return null;
-      },
-    },
-  ],
 });
 
 export default [preload, main];
